@@ -1,0 +1,295 @@
+
+/* PLANORA — Motion Design Layer */
+
+:root {
+  --motion-ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+/* Smooth page entrance */
+
+.app-shell {
+  animation: planoraPageIn .75s var(--motion-ease) both;
+}
+
+@keyframes planoraPageIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section reveal */
+
+.hero-banner,
+.stats-grid,
+.section-heading,
+.task-toolbar,
+.task-list {
+  animation: sectionReveal .65s var(--motion-ease) both;
+}
+
+.hero-banner { animation-delay: .04s; }
+.stats-grid { animation-delay: .10s; }
+.section-heading { animation-delay: .15s; }
+.task-toolbar { animation-delay: .19s; }
+.task-list { animation-delay: .23s; }
+
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(13px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Buttons */
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.primary-button,
+.icon-button,
+.nav-link,
+.task-actions button,
+#close-modal {
+  transition:
+    transform .25s var(--motion-ease),
+    background .25s ease,
+    color .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-3px);
+}
+
+.primary-button:active,
+.icon-button:active,
+.task-actions button:active {
+  transform: scale(.96);
+}
+
+/* Hero symbol */
+
+.hero-art {
+  transform-origin: center;
+  animation: heroFloat 5s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-7deg);
+  }
+  50% {
+    transform: translateY(-13px) rotate(7deg);
+  }
+}
+
+/* Stat cards */
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform .35s var(--motion-ease),
+    box-shadow .35s ease;
+}
+
+.stat-card::after {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  right: -65px;
+  bottom: -75px;
+  background: rgba(255,255,255,.35);
+  transition: transform .45s var(--motion-ease);
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(43,34,70,.10);
+}
+
+.stat-card:hover::after {
+  transform: scale(1.7);
+}
+
+/* Task cards */
+
+.task-card {
+  animation: taskAppear .45s var(--motion-ease) both;
+  transition:
+    transform .3s var(--motion-ease),
+    box-shadow .3s ease,
+    border-color .3s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 32px rgba(43,34,70,.075);
+}
+
+.task-card .task-check {
+  transition: transform .2s ease;
+}
+
+.task-card .task-check:hover {
+  transform: scale(1.15);
+}
+
+@keyframes taskAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Task completion feedback */
+
+.task-card:has(.task-check:checked) .task-info h3 {
+  opacity: .55;
+  text-decoration: line-through;
+  transition: opacity .25s ease;
+}
+
+/* Modal */
+
+.modal-overlay {
+  transition: opacity .25s ease;
+}
+
+.task-modal {
+  animation: modalEntrance .38s var(--motion-ease) both;
+}
+
+@keyframes modalEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+#close-modal:hover {
+  transform: rotate(90deg);
+}
+
+/* Input interaction */
+
+input,
+textarea,
+select {
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease,
+    background .2s ease;
+}
+
+/* Footer */
+
+.big-footer h2 {
+  transition: letter-spacing .4s ease;
+}
+
+.big-footer:hover h2 {
+  letter-spacing: -2px;
+}
+
+/* Cursor glow — desktop pointer only */
+
+.planora-cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(
+    circle,
+    rgba(164, 137, 255, .10) 0%,
+    rgba(164, 137, 255, .035) 45%,
+    transparent 72%
+  );
+  transform: translate(-50%, -50%);
+  transition: opacity .3s ease;
+  will-change: left, top;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .planora-cursor-glow {
+    opacity: 1;
+  }
+}
+
+/* Keep content above decorative glow */
+
+.sidebar,
+.main-content,
+.modal-overlay,
+.toast {
+  position: relative;
+}
+
+.modal-overlay {
+  z-index: 1000;
+}
+
+.toast {
+  z-index: 2000;
+}
+
+/* Mobile: less movement */
+
+@media (max-width: 760px) {
+  .planora-cursor-glow {
+    display: none;
+  }
+
+  .hero-art {
+    animation-duration: 7s;
+  }
+
+  .task-card:hover,
+  .stat-card:hover {
+    transform: none;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  .planora-cursor-glow {
+    display: none !important;
+  }
+}

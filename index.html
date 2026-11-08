@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f8f6f2">
+  <title>PLANORA — Your Workspace</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/motion.css">
+</head>
+
+<body>
+
+  <div class="app-shell" id="app" hidden>
+
+    <aside class="sidebar">
+
+      <a class="logo" href="index.html">✳ PLANORA</a>
+
+      <div class="user-card">
+        <div class="avatar" id="user-avatar">P</div>
+        <div>
+          <strong id="user-name">User</strong>
+          <small>Personal workspace</small>
+        </div>
+      </div>
+
+      <p class="side-label">WORKSPACE</p>
+
+      <nav>
+        <button class="nav-link active" data-view="overview">◫ Overview</button>
+        <button class="nav-link" data-view="tasks">☷ All tasks</button>
+        <button class="nav-link" data-view="calendar">▦ Calendar</button>
+      </nav>
+
+      <p class="side-label">FILTERS</p>
+
+      <nav>
+        <button class="nav-link" data-filter="today">◷ Today</button>
+        <button class="nav-link" data-filter="upcoming">✳ Upcoming</button>
+        <button class="nav-link" data-filter="completed">✓ Completed</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button class="nav-link" id="logout-btn">↪ Logout</button>
+      </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">YOUR PRODUCTIVITY SPACE</span>
+          <h1 id="greeting">Good day.</h1>
+        </div>
+
+        <div class="top-actions">
+          <input id="search-input" type="search" placeholder="Search tasks...">
+          <button id="theme-toggle" class="icon-button" title="Toggle theme">☾</button>
+        </div>
+      </header>
+
+
+      <section class="hero-banner">
+        <div>
+          <span class="eyebrow">MAKE TODAY COUNT ✳</span>
+          <h2>Small steps.<br><em>Big things.</em></h2>
+          <p>Every completed task is a little win.</p>
+        </div>
+        <div class="hero-art">✳</div>
+      </section>
+
+
+      <section class="stats-grid">
+
+        <article class="stat-card lilac">
+          <span>TOTAL TASKS</span>
+          <strong id="total-count">0</strong>
+          <small>Across your workspace</small>
+        </article>
+
+        <article class="stat-card peach">
+          <span>COMPLETED</span>
+          <strong id="completed-count">0</strong>
+          <small>Little wins achieved</small>
+        </article>
+
+        <article class="stat-card mint">
+          <span>IN PROGRESS</span>
+          <strong id="progress-count">0</strong>
+          <small>Keep going</small>
+        </article>
+
+        <article class="stat-card yellow">
+          <span>OVERDUE</span>
+          <strong id="overdue-count">0</strong>
+          <small>Need your attention</small>
+        </article>
+
+      </section>
+
+
+      <section class="section-heading">
+        <div>
+          <span class="eyebrow">YOUR WORKSPACE</span>
+          <h2 id="view-title">Today's focus.</h2>
+        </div>
+
+        <button class="primary-button" id="add-task-btn">+ New task</button>
+      </section>
+
+
+      <section class="task-toolbar">
+        <select id="status-filter">
+          <option value="all">All statuses</option>
+          <option value="pending">Pending</option>
+          <option value="progress">In progress</option>
+          <option value="completed">Completed</option>
+        </select>
+
+        <select id="priority-filter">
+          <option value="all">All priorities</option>
+          <option value="high">High priority</option>
+          <option value="medium">Medium priority</option>
+          <option value="low">Low priority</option>
+        </select>
+
+        <button id="clear-search">Clear filters</button>
+      </section>
+
+
+      <section id="task-list" class="task-list">
+        <div class="empty-state">
+          <span>✳</span>
+          <h3>Make space for your ideas.</h3>
+          <p>Your tasks will appear here.</p>
+        </div>
+      </section>
+
+
+      <footer class="big-footer">
+        <span>STAY CURIOUS.</span>
+        <h2>Less chaos.<em>More clarity.</em></h2>
+        <div class="footer-bottom">
+          <span>PLANORA © 2026</span>
+          <span>PLAN YOUR DAY. OWN YOUR TIME. ✳</span>
+        </div>
+      </footer>
+
+    </main>
+
+  </div>
+
+
+  <!-- TASK MODAL -->
+  <div class="modal-overlay hidden" id="task-modal">
+
+    <form class="task-modal" id="task-form">
+
+      <div class="modal-heading">
+        <div>
+          <span class="eyebrow">YOUR NEXT LITTLE WIN</span>
+          <h2 id="modal-title">Create a task.</h2>
+        </div>
+
+        <button type="button" id="close-modal">✕</button>
+      </div>
+
+      <input id="task-id" type="hidden">
+
+      <label for="task-title">Task name</label>
+      <input id="task-title" type="text" maxlength="120" placeholder="What needs to get done?" required>
+
+      <label for="task-description">Description</label>
+      <textarea id="task-description" maxlength="1000" placeholder="Add some details..."></textarea>
+
+      <div class="modal-row">
+        <div>
+          <label for="task-date">Due date</label>
+          <input id="task-date" type="date">
+        </div>
+
+        <div>
+          <label for="task-priority">Priority</label>
+          <select id="task-priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="task-status">Status</label>
+      <select id="task-status">
+        <option value="pending">Pending</option>
+        <option value="progress">In progress</option>
+        <option value="completed">Completed</option>
+      </select>
+
+      <button type="submit" class="primary-button modal-submit">Save task ↗</button>
+
+    </form>
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

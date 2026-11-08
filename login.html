@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PLANORA — Welcome</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+  <div class="orb orb-three"></div>
+
+  <main class="auth-layout">
+    <section class="auth-brand">
+      <a href="login.html" class="logo">✳ PLANORA</a>
+
+      <div>
+        <p class="eyebrow">YOUR PERSONAL SPACE</p>
+        <h1>Make room<br>for <em>what matters.</em></h1>
+        <p class="brand-description">
+          Your ideas, your tasks, your goals.
+          Everything in one beautiful workspace.
+        </p>
+      </div>
+
+      <p class="brand-footer">PLAN YOUR DAY. OWN YOUR TIME. ✳</p>
+    </section>
+
+    <section class="auth-panel">
+      <div class="glass-card">
+        <span class="welcome-tag">✳ WELCOME TO PLANORA</span>
+        <h2 id="auth-title">Welcome back.</h2>
+        <p id="auth-subtitle">Let's get things done today.</p>
+
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+
+        <form id="login-form" class="auth-form">
+          <label>Email address</label>
+          <input id="login-email" type="email" placeholder="you@example.com" autocomplete="email" required>
+
+          <label>Password</label>
+          <input id="login-password" type="password" placeholder="Your password" autocomplete="current-password" required>
+
+          <div class="form-options">
+            <label class="remember"><input id="remember" type="checkbox" checked> Remember me</label>
+            <button type="button" class="link-button" id="forgot-btn">Forgot password?</button>
+          </div>
+
+          <button class="submit-button" type="submit">Sign in <span>↗</span></button>
+        </form>
+
+        <form id="signup-form" class="auth-form hidden">
+          <label>Full name</label>
+          <input id="signup-name" type="text" placeholder="Your name" maxlength="60" autocomplete="name" required>
+
+          <label>Email address</label>
+          <input id="signup-email" type="email" placeholder="you@example.com" autocomplete="email" required>
+
+          <label>Password</label>
+          <input id="signup-password" type="password" placeholder="Minimum 8 characters" minlength="8" autocomplete="new-password" required>
+
+          <button class="submit-button" type="submit">Create account <span>↗</span></button>
+        </form>
+
+        <form id="reset-form" class="auth-form hidden">
+          <label>Email address</label>
+          <input id="reset-email" type="email" placeholder="you@example.com" required>
+          <button class="submit-button" type="submit">Send reset link <span>↗</span></button>
+          <button type="button" class="link-button back-button" id="back-login">← Back to login</button>
+        </form>
+
+        <div class="divider" id="divider"><span>OR CONTINUE WITH</span></div>
+
+        <button class="google-button" id="google-btn" type="button">
+          <b>G</b> Continue with Google
+        </button>
+
+        <p class="switch-text" id="switch-text">
+          Don't have an account?
+          <button type="button" id="switch-auth">Create account</button>
+        </p>
+
+        <p class="terms">YOUR PRODUCTIVITY JOURNEY STARTS HERE. ✳</p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>

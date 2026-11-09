@@ -1,23 +1,37 @@
 
+/* ================================
+   PLANORA — AUTHENTICATION
+   Desktop + Tablet + Mobile
+================================ */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  width: 100%;
+  min-height: 100%;
+}
+
 body {
   min-height: 100vh;
+  width: 100%;
   font-family: "Montserrat", sans-serif;
   color: #292432;
-  background: linear-gradient(130deg,#e9e2ff,#f9e8ee,#e0f2e6);
+  background: linear-gradient(130deg, #e9e2ff, #f9e8ee, #e0f2e6);
   overflow-x: hidden;
 }
+
+/* Background decoration */
 
 .orb {
   position: fixed;
   border-radius: 50%;
   filter: blur(2px);
   pointer-events: none;
+  z-index: 0;
 }
 
 .orb-one {
@@ -44,13 +58,16 @@ body {
   right: 35%;
 }
 
+/* Main layout */
+
 .auth-layout {
   position: relative;
-  width: min(1250px,94%);
+  z-index: 1;
+  width: min(1250px, 94%);
   min-height: 720px;
   margin: 30px auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   border: 1px solid rgba(255,255,255,.8);
   border-radius: 30px;
   overflow: hidden;
@@ -60,6 +77,7 @@ body {
 }
 
 .auth-brand {
+  min-width: 0;
   padding: 55px;
   display: flex;
   flex-direction: column;
@@ -74,7 +92,8 @@ body {
   letter-spacing: -1px;
 }
 
-.eyebrow,.welcome-tag {
+.eyebrow,
+.welcome-tag {
   color: #7356df;
   font-size: 10px;
   letter-spacing: 2px;
@@ -82,14 +101,15 @@ body {
 }
 
 .auth-brand h1 {
-  font-size: clamp(45px,5vw,72px);
+  font-size: clamp(45px, 5vw, 72px);
   line-height: 1.05;
   letter-spacing: -4px;
   margin: 20px 0;
+  overflow-wrap: break-word;
 }
 
 .auth-brand h1 em {
-  font-family: "Instrument Serif",serif;
+  font-family: "Instrument Serif", serif;
   font-weight: 400;
   color: #7356df;
 }
@@ -107,7 +127,10 @@ body {
   letter-spacing: 2px;
 }
 
+/* Login panel */
+
 .auth-panel {
+  min-width: 0;
   display: grid;
   place-items: center;
   padding: 35px;
@@ -116,6 +139,7 @@ body {
 .glass-card {
   width: 100%;
   max-width: 440px;
+  min-width: 0;
   padding: 40px;
   background: rgba(255,255,255,.62);
   border: 1px solid rgba(255,255,255,.9);
@@ -125,23 +149,30 @@ body {
 }
 
 .glass-card h2 {
-  font-family: "Instrument Serif",serif;
+  font-family: "Instrument Serif", serif;
   font-weight: 400;
   font-size: 46px;
+  line-height: 1.1;
   margin-top: 15px;
+  overflow-wrap: break-word;
 }
 
 #auth-subtitle {
   color: #85818f;
   font-size: 12px;
+  line-height: 1.6;
   margin-top: 7px;
 }
+
+/* Forms */
 
 .auth-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 27px;
+  width: 100%;
+  min-width: 0;
 }
 
 .auth-form > label {
@@ -150,7 +181,9 @@ body {
 }
 
 .auth-form > input {
+  display: block;
   width: 100%;
+  min-width: 0;
   padding: 15px;
   margin-bottom: 10px;
   border: 1px solid rgba(130,110,170,.2);
@@ -171,6 +204,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
   font-size: 10px;
   margin: 5px 0 15px;
 }
@@ -179,6 +214,11 @@ body {
   display: flex;
   gap: 6px;
   align-items: center;
+  min-width: 0;
+}
+
+.remember input {
+  accent-color: #7356df;
 }
 
 .link-button {
@@ -189,9 +229,12 @@ body {
   font-size: 10px;
   font-weight: 700;
   cursor: pointer;
+  overflow-wrap: anywhere;
 }
 
 .submit-button {
+  width: 100%;
+  min-width: 0;
   border: none;
   border-radius: 12px;
   padding: 16px;
@@ -212,6 +255,8 @@ body {
   float: right;
 }
 
+/* Google login */
+
 .divider {
   display: flex;
   align-items: center;
@@ -220,17 +265,25 @@ body {
   color: #85818f;
   font-size: 9px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
-.divider::before,.divider::after {
+.divider::before,
+.divider::after {
   content: "";
   flex: 1;
+  min-width: 10px;
   height: 1px;
   background: rgba(100,80,130,.15);
 }
 
 .google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   width: 100%;
+  min-width: 0;
   padding: 14px;
   border: 1px solid rgba(100,80,130,.15);
   border-radius: 12px;
@@ -243,14 +296,16 @@ body {
 
 .google-button b {
   color: #4285f4;
-  margin-right: 10px;
   font-size: 16px;
 }
+
+/* Account switch */
 
 .switch-text {
   margin-top: 25px;
   text-align: center;
   font-size: 10px;
+  line-height: 1.8;
   color: #85818f;
 }
 
@@ -259,6 +314,7 @@ body {
   background: none;
   color: #7356df;
   font-weight: 700;
+  font-family: inherit;
   cursor: pointer;
 }
 
@@ -267,6 +323,7 @@ body {
   margin-top: 25px;
   color: #85818f;
   font-size: 9px;
+  line-height: 1.7;
   letter-spacing: 1px;
 }
 
@@ -274,11 +331,259 @@ body {
   font-size: 11px;
   margin-top: 15px;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
-.message.error { color: #bd3151; }
-.message.success { color: #24875a; }
+.message.error {
+  color: #bd3151;
+}
 
-.back-button { margin-top: 12px; }
+.message.success {
+  color: #24875a;
+}
 
-.hidden { display: none !important; }
+.back-button {
+  margin-top: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 1000px) {
+  .auth-layout {
+    width: 96%;
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  }
+
+  .auth-brand {
+    padding: 35px;
+  }
+
+  .auth-panel {
+    padding: 25px;
+  }
+
+  .glass-card {
+    padding: 30px;
+  }
+
+  .auth-brand h1 {
+    font-size: clamp(42px, 5vw, 60px);
+  }
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 760px) {
+  body {
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .auth-layout {
+    width: calc(100% - 28px);
+    min-height: auto;
+    margin: 14px auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    border-radius: 23px;
+  }
+
+  /* Branding section */
+
+  .auth-brand {
+    min-height: 300px;
+    padding: 28px 25px 25px;
+    gap: 35px;
+  }
+
+  .logo {
+    font-size: 21px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+  }
+
+  .auth-brand h1 {
+    font-size: clamp(43px, 11vw, 58px);
+    line-height: 1.02;
+    letter-spacing: -2.8px;
+    margin: 15px 0;
+  }
+
+  .brand-description {
+    max-width: 330px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .brand-footer {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+
+  /* Login card */
+
+  .auth-panel {
+    display: block;
+    width: 100%;
+    padding: 0 13px 18px;
+  }
+
+  .glass-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 28px 23px;
+    border-radius: 20px;
+  }
+
+  .welcome-tag {
+    font-size: 9px;
+    letter-spacing: 1.6px;
+  }
+
+  .glass-card h2 {
+    font-size: 42px;
+    margin-top: 13px;
+  }
+
+  #auth-subtitle {
+    font-size: 12px;
+  }
+
+  .auth-form {
+    margin-top: 24px;
+    gap: 9px;
+  }
+
+  .auth-form > label {
+    font-size: 11px;
+  }
+
+  .auth-form > input {
+    width: 100%;
+    padding: 15px 13px;
+    font-size: 13px;
+    margin-bottom: 9px;
+  }
+
+  .form-options {
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 5px 0 14px;
+  }
+
+  .remember {
+    font-size: 10px;
+  }
+
+  .link-button {
+    font-size: 10px;
+  }
+
+  .submit-button {
+    padding: 16px;
+    font-size: 13px;
+  }
+
+  .divider {
+    margin: 23px 0;
+    font-size: 8px;
+    gap: 9px;
+  }
+
+  .google-button {
+    padding: 15px 10px;
+    font-size: 11px;
+  }
+
+  .switch-text {
+    margin-top: 22px;
+    font-size: 10px;
+  }
+
+  .terms {
+    margin-top: 22px;
+    font-size: 8px;
+  }
+
+  .orb-one {
+    width: 230px;
+    height: 230px;
+  }
+
+  .orb-two {
+    width: 230px;
+    height: 230px;
+  }
+
+  .orb-three {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 400px) {
+  .auth-layout {
+    width: calc(100% - 20px);
+    margin: 10px auto;
+  }
+
+  .auth-brand {
+    min-height: 275px;
+    padding: 23px 20px;
+  }
+
+  .auth-brand h1 {
+    font-size: 43px;
+  }
+
+  .auth-panel {
+    padding: 0 9px 12px;
+  }
+
+  .glass-card {
+    padding: 25px 18px;
+  }
+
+  .glass-card h2 {
+    font-size: 38px;
+  }
+
+  .form-options {
+    gap: 8px;
+  }
+
+  .remember {
+    font-size: 9px;
+  }
+
+  .link-button {
+    font-size: 9px;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}
